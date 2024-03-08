@@ -108,7 +108,6 @@ sudo ./install.sh
 ```bash
 
 mkdir -p "$HOME/.oh-my-zsh/completions"
-kic completion zsh > "$HOME/.oh-my-zsh/completions/_kic"
 kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
 kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
@@ -125,9 +124,9 @@ compinit
 
 ```bash
 
-cd $HOME
+cd "$HOME/wsl"
 
-kic cluster create
+./create-cluster.sh
 
 ```
 
@@ -191,22 +190,22 @@ http localhost/version
 ```bash
 
 # delete the cluster
-wsl -- kic cluster delete
+wsl -- k3d cluster delete
 
 # stop the instance
 wsl -t ubuntu
 
 # export the image
-wsl --export ubuntu kic.tar
+wsl --export ubuntu kwsl.tar
 
 # unregister ubuntu
 wsl --unregister ubuntu
 
-# import the image as "kic" - store in ./kic
-wsl --import kic kic kic.tar
+# import the image as "kwsl" - store in ./kwsl
+wsl --import kwsl kwsl kwsl.tar
 
 # start the image
-# run kic cluster create if you deleted the cluster
+# run ./create-cluster.sh if you deleted the cluster
 wsl -- code .
 
 ```

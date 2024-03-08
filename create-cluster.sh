@@ -1,17 +1,14 @@
 #!/bin/bash
 
-k3d="$CLI_BOA_DIR/k3d.yaml"
-# validate directories
-if [ ! -f "$k3d" ]; then
-	k3d="$CLI_BIN_DIR/.$CLI_BIN_NAME/k3d.yaml"
+cd "$HOME/wsl"
 
-	if [ ! -f "$k3d" ]; then
-		echo "File not found - $k3d"
-		exit 1
-	fi
+# validate config file
+if [ ! -f k3d.yaml ]; then
+	echo "File not found - k3d.yaml"
+	exit 1
 fi
 
-kic cluster delete
+k3d cluster delete
 
 set -e
 
@@ -20,7 +17,7 @@ echo "Creating cluster ..."
 
 k3d cluster create \
     --k3s-arg '--no-deploy=traefik@server:0' \
-    --config "$k3d"
+    --config k3d.yaml
 
 echo "waiting for cluster to start"
 sleep 10

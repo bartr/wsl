@@ -24,21 +24,6 @@ options:
   runtime:
     HostPidMode: false
 ports:
-- nodeFilters:
-  - server:0
-  port: 30000:30000
-- nodeFilters:
-  - server:0
-  port: 30080:30080
-- nodeFilters:
-  - server:0
-  port: 31433:31433
-- nodeFilters:
-  - server:0
-  port: 32000:32000
-- nodeFilters:
-  - server:0
-  port: 32080:32080
 - port: 80:80
   nodeFilters:
   - loadbalancer
