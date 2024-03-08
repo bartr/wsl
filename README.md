@@ -93,7 +93,7 @@ sudo ./install.sh
 
 ## Finish Setup
 
-- `exit` the WSL shell until your back at the Command Prompt
+- `exit` the WSL shell until you're back at the Command Prompt
 - Restart the WSL shell
   - This will start the WSL shell in VS Code
 
@@ -135,14 +135,19 @@ kic cluster create
 
 ```bash
 
-cd deploy
+cd "$HOME/wsl/deploy"
 
 # create an NGINX ingress controller
 kubectl apply -k cert-manager
-kubectl apploy -k ingress-nginx
+kubectl apply -k ingress-nginx
 
-# wait for pods to start
-kubectl get pods --watch
+echo ""
+echo "waiting for ingress to start"
+
+kubectl wait pods -n ingress-nginx -l app.kubernetes.io/component=controller --for condition=Ready --timeout=30s
+
+echo ""
+kubectl get pods -A
 
 ```
 
@@ -153,15 +158,24 @@ kubectl get pods --watch
 kubectl apply -k heartbeat
 kubectl apply -k config
 
+echo ""
+echo "waiting for pods to start"
+
+kubectl wait pods -n heartbeat -l app=heartbeat --for condition=Ready --timeout=30s
+kubectl wait pods -n config -l app=config --for condition=Ready --timeout=30s
+
+echo ""
+kubectl get pods -A
+
 ```
 
 ## Test the Cluster
 
 ```bash
 
-http localhost
+http localhost/heartbeat/version
 
-http localhost/heartbeat/16
+http localhost/version
 
 ```
 
