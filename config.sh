@@ -31,8 +31,8 @@ mkdir -p $HOME/.k9s
     echo ""
 
     echo "export GO111MODULE=on"
-    echo "export KIC_BASE=\$HOME/pizza-labs"
-    echo "export KIC_REPO_FULL=https://github.com/cse-labs/pizza-labs"
+    echo "export KIC_BASE=\$HOME/wsl"
+    echo "export KIC_REPO_FULL=https://github.com/bartr/wsl"
     echo "export KIC_BRANCH=main"
     # echo "export KUBECONFIG=/mnt/c/Users/$USER/.kube/config"
 } > $HOME/.zshenv
