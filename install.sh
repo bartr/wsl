@@ -33,7 +33,7 @@ apt-get install -y docker-ce docker-ce-cli containerd.io
 apt-get install -y gh
 
 # fix dotnet install issue
-cp -r /usr/share/dotnet/* /usr/lib/dotnet/
+# cp -r /usr/share/dotnet/* /usr/lib/dotnet/
 
 # install kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"

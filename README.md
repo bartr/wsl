@@ -107,20 +107,7 @@ sudo ./install.sh
 
   ```
 
-- Use "ctl `" to open a terminal
-
-```bash
-
-mkdir -p "$HOME/.oh-my-zsh/completions"
-kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
-k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
-kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
-gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
-flux completion zsh > "$HOME/.oh-my-zsh/completions/_flux"
-helm completion zsh > "$HOME/.oh-my-zsh/completions/_helm"
-compinit
-
-```
+- Use "ctl `" to open a terminal (if necessary)
 
 ## Create a Cluster
 
@@ -211,7 +198,7 @@ wsl --unregister ubuntu
 wsl --import kwsl kwsl kwsl.tar
 
 # start the image
-# run ./create-cluster.sh if you deleted the cluster
+# run ./wsl/create-cluster.sh if you deleted the cluster
 wsl -- code .
 
 ```
