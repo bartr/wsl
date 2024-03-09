@@ -83,10 +83,14 @@ cd wsl
 
 ```bash
 
-# install tools
 sudo ./install.sh
 
-# Configure User
+```
+
+## Configure oh-my-zsh
+
+```bash
+
 ./config.sh
 
 ```

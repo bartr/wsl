@@ -18,9 +18,6 @@ mkdir -p $HOME/.k9s
     echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.dotnet/tools:\$HOME/go/bin"
     echo ""
 
-    echo "export PAT=$PAT"
-    echo ""
-
     echo "alias k='kubectl'"
     echo "alias kaf='kubectl apply -f'"
     echo "alias kdelf='kubectl delete -f'"
@@ -60,3 +57,11 @@ bash -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
     echo "compinit"
 } >> $HOME/.zshrc
+
+mkdir -p "$HOME/.oh-my-zsh/completions"
+kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
+k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
+kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
+gh completion zsh > "$HOME/.oh-my-zsh/completions/_gh"
+flux completion zsh > "$HOME/.oh-my-zsh/completions/_flux"
+helm completion zsh > "$HOME/.oh-my-zsh/completions/_helm"
