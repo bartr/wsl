@@ -136,6 +136,9 @@ echo "waiting for ingress to start"
 
 kubectl wait pods -n ingress-nginx -l app.kubernetes.io/component=controller --for condition=Ready --timeout=30s
 
+# give the ingress controller webhook time to start
+sleep 3
+
 echo ""
 kubectl get pods -A
 
