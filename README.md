@@ -115,7 +115,7 @@ mkdir -p "$HOME/.oh-my-zsh/completions"
 kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
 kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
-gh completion zsh > "$HOME/.oh-my-zsh/completions/_gh"
+gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
 flux completion zsh > "$HOME/.oh-my-zsh/completions/_flux"
 helm completion zsh > "$HOME/.oh-my-zsh/completions/_helm"
 compinit
@@ -157,6 +157,8 @@ kubectl get pods -A
 ## Deploy Sample Workloads
 
 ```bash
+
+cd "$HOME/wsl/deploy"
 
 kubectl apply -k heartbeat
 kubectl apply -k config
