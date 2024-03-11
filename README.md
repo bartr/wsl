@@ -209,7 +209,34 @@ wsl -- code wsl
 
 ```
 
-## Stop the WSL Instance
+## Lagniappe (a little extra)
+
+The WSL and VS Code teams have done a great job at integrating the Linux developer experience. Here are a few `tricks`
+
+- If you logged into GitHub from Windows, "it just works" in the VS Code terminal in WSL
+  - Note that it does not work from an SSH terminal - you have to configure first
+- If you have the `az CLI` installed and logged in via Windows, "it just works" in WSL.
+  - Just type `az account show` from your VS Code terminal in WSL
+  - Type `which az` and you'll notice that it runs from `/mnt/c/...`
+- You can access your Windows host machine from `/mnt/c/..`
+  - Try `cd /mnt/c/Users/$USER` (assuming you used the same user name)
+- Type `path` from your VS Code terminal to see all of the Windows paths mounted
+  - Typing `which path` will show you the shell script is in `$HOME/bin/path`
+- Type `ipconfig` to get your WSL IP address (it's an alias)
+- Type `alias` to see the different aliases that are defined
+- Type `code ~/.zshrc` and `code ~/.zshenv` to edit your default shell
+  - You can change your `oh-my-zsh` theme if you want
+  - A list of themes is [here](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
+  - You can also add aditional zsh [plugins](https://github.com/ohmyzsh/ohmyzsh/wiki/plugins)
+- If you would rather have your repos somewhere other than $HOME (like /workspaces), you can create the directory and cause the shell to automatically start there (i.e. `cd /workspaces` instead of `cd $HOME` in .zshenv)
+  - After creating the directory, make sure to run `sudo chown -R $USER:$USER /workspaces`
+- Typing `cd ~` or just `~` will cd to $HOME
+- Typing `cd -` or just `-` will cd to $OLD_PWD
+- Typing `..` or `...` or `......` will go back one or more directories in the tree
+- Type `cd ~/wsl/deploy/heartbeat` and then `code *.yaml` to open all the yaml files
+- Typing `code dirName` will open a new instance of code at that directory
+
+### Stop the WSL Instance
 
 ```bash
 
@@ -217,7 +244,7 @@ wsl -t ubuntu
 
 ```
 
-## Destroy the WSL Instance
+### Destroy the WSL Instance
 
 ```bash
 
@@ -225,7 +252,7 @@ wsl --unregister ubuntu
 
 ```
 
-## Stop WSL
+### Stop WSL
 
 ```bash
 
