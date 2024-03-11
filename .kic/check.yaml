@@ -11,3 +11,6 @@ commands:
     - name: pos
       short: Check POS endpoint
       command: http localhost/pos/version
+    - name: flux
+      short: Check Flux Status
+      command: flux get kustomizations
