@@ -115,7 +115,10 @@ sudo ./install.sh
 
 ## Create a Cluster
 
-- This will create the k3d cluster
+- This will create the k3d cluster using `kic`
+- KiC is a custom CLI that automatates common K8s tasks
+- KiC provides robust tab completion which makes it easier for new to K8s engineers
+- Everything in KiC can be accomplished using the underlying CLIs
 
 ```bash
 
