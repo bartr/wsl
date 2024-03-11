@@ -7,6 +7,6 @@ metadata:
 
 resources:
   - ns.yaml
-  - service.yaml
-  - ingress.yaml
-  - deployment.yaml
+  #- service.yaml
+  #- ingress.yaml
+  #- deployment.yaml
