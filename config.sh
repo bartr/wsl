@@ -24,6 +24,10 @@ mkdir -p $HOME/.k9s
     echo "alias kl='kubectl logs'"
     echo "alias kak='kubectl apply -k'"
     echo "alias kuse='kubectl config use-context'"
+    echo "alias kgp='kubectl get pods -A'"
+    echo "alias kgs='kubectl get svc -A'"
+    echo "alias kgi='kubectl get ingress -A'"
+    echo "alias kgc='kubectl config get-contexts'"
     echo "alias ipconfig='ip -4 a show eth0 | grep inet | sed \"s/inet//g\" | sed \"s/ //g\" | cut -d / -f 1'"
     echo ""
 
