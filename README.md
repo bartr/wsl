@@ -103,7 +103,10 @@ sudo ./install.sh
 
   ```bash
 
-  wsl -- code .
+  # note that the second "wsl" is the repo name / directory
+  # you could use "." or "~" for $HOME
+  # or whatever repo you have cloned and want to work on
+  wsl -- code wsl
 
   ```
 
@@ -197,12 +200,11 @@ wsl --export ubuntu kwsl.tar
 # unregister ubuntu
 wsl --unregister ubuntu
 
-# import the image as "kwsl" - store in ./kwsl
-wsl --import kwsl kwsl kwsl.tar
+# import the image as "bartr" - store in ./bartr
+wsl --import bartr bartr kwsl.tar
 
 # start the image
-# run ./wsl/create-cluster.sh if you deleted the cluster
-wsl -- code .
+wsl -- code wsl
 
 ```
 
