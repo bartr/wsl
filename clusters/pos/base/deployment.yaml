@@ -34,15 +34,15 @@ spec:
           - name: TITLE
             value: POS
           - name: Region
-            value: central
+            value: east
           - name: State
-            value: tx
+            value: mi
           - name: City
-            value: atx
+            value: ann_arbor
           - name: Store
-            value: lab-02
+            value: lab-01
           - name: Ring
-            value: pilot
+            value: beta
           - name: Namespace
             value: pos
           - name: Application

@@ -12,7 +12,7 @@ spec:
   # tls:
   # - secretName: pos
   #   hosts:
-  #   - lab-02.res-edge.com
+  #   - lab-01.res-edge.com
   rules:
   - http:
       paths:
