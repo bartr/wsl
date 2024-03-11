@@ -125,6 +125,33 @@ sudo ./install.sh
 
 - Use "ctl `" to open a terminal (if necessary)
 
+## Save the Image
+
+- Use WSL to save the image for reuse
+  - Exit WSL into the Command Prompt
+  - Close VS Code
+- Change to the directory you want to store the file (3 - 8 GB)
+
+```bash
+
+# stop the instance
+wsl -t ubuntu
+
+# export the image
+wsl --export ubuntu kic.tar
+
+# unregister ubuntu
+wsl --unregister ubuntu
+
+# import the image as "bartr" - store in ./bartr
+# change "bartr"
+wsl --import bartr bartr kic.tar
+
+# start the image
+wsl -- code wsl
+
+```
+
 ## Create a Cluster
 
 - This will create the k3d cluster using `kic`
@@ -194,36 +221,6 @@ kic check config
 ```
 
 - Using your browser, go to <http://localhost/version> and <http://localhost/heartbeat/version>
-
-## Save the Image
-
-- Use WSL to save the image for reuse
-  - Exit WSL into the Command Prompt
-  - Close VS Code
-- Change to the directory you want to store the file (3 - 8 GB)
-
-```bash
-
-# delete the cluster
-wsl -- k3d cluster delete
-
-# stop the instance
-wsl -t ubuntu
-
-# export the image
-wsl --export ubuntu kic.tar
-
-# unregister ubuntu
-wsl --unregister ubuntu
-
-# import the image as "bartr" - store in ./bartr
-# change "bartr"
-wsl --import bartr bartr kic.tar
-
-# start the image
-wsl -- code wsl
-
-```
 
 ## Lagniappe (a little extra)
 
