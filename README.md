@@ -30,7 +30,7 @@ These instructions work on a local Windows host as well as a virtual Windows hos
     wsl --set-default-version 2
 
     ```
-  
+
   - Reboot if necessary
 
 ## Start Ubuntu in WSL
@@ -121,7 +121,7 @@ sudo ./install.sh
 
 cd "$HOME/wsl"
 
-./create-cluster.sh
+kic cluster create
 
 ```
 
@@ -172,13 +172,13 @@ kubectl get pods -A
 
 ```bash
 
-http localhost/heartbeat/version
+kic check heartbeat
 
-http localhost/version
+kic check config
 
 ```
 
-- Using your browser, go to <http://localhost> and <http://localhost/heartbeat/16>
+- Using your browser, go to <http://localhost/version> and <http://localhost/heartbeat/version>
 
 ## Save the Image
 
@@ -196,13 +196,14 @@ wsl -- k3d cluster delete
 wsl -t ubuntu
 
 # export the image
-wsl --export ubuntu kwsl.tar
+wsl --export ubuntu kic.tar
 
 # unregister ubuntu
 wsl --unregister ubuntu
 
 # import the image as "bartr" - store in ./bartr
-wsl --import bartr bartr kwsl.tar
+# change "bartr"
+wsl --import bartr bartr kic.tar
 
 # start the image
 wsl -- code wsl
