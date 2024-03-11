@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd $HOME || exit 1
+export PATH=$PATH:$HOME/bin:$HOME/.dotnet/tools:$HOME/go/bin
 
 # make some directories we will need
 mkdir -p $HOME/.ssh
