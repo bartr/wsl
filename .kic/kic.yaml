@@ -1,3 +1,8 @@
 commands:
 - name: new
   hidden: true
+
+bashCommands:
+  - name: reconcile
+    short: Force Flux to reconcile
+    command: flux reconcile source git gitops
