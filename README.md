@@ -1,17 +1,13 @@
 # Kubernetes on WSL
 
+WSL is a great developer experience for Windows. It requires no additional licensing fees and provides additional Windows host and VS Code integration. Creating and using "snapshots" of your VM is very straight forward. WSL is very fast! We haven't found anything yet that doesn't work as expected using this setup.
+
+These instructions work on a local Windows host as well as a virtual Windows host such as [Microsoft Dev Box](https://learn.microsoft.com/en-us/azure/dev-box/overview-what-is-microsoft-dev-box). For virtual hosts, `nested virtualization` must be supported.
+
 ## Install WSL (version 2)
 
-- From an elevated Command Prompt
-  - Install WSL (skip this step if WSL is installed)
-
-    ```bash
-
-    wsl --install
-
-    ```
-
-  - You may have to run --update multiple times
+- From an elevated Command Prompt or PowerShell
+  - Update WSL
 
     ```bash
 
@@ -19,7 +15,14 @@
 
     ```
 
-    - The most recent version of Windows Subsystem for Linux is already installed.
+  - If you get an error, you need to install WSL first, then run `wsl --update` again
+
+    ```bash
+
+    wsl --install
+
+    ```
+
   - Set WSL to always use verion 2
 
     ```bash
@@ -36,8 +39,6 @@
   - Using the same user name as Windows will make things easier
 
   ```bash
-
-  set USERNAME
 
   wsl --install -d ubuntu
 
