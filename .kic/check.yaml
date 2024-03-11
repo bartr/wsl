@@ -1,0 +1,13 @@
+commands:
+- name: check
+  short: Check K8s endpoints
+  bashCommands:
+    - name: heartbeat
+      short: Check heartbeat endpoint
+      command: http localhost/heartbeat/version
+    - name: config
+      short: Check config endpoint
+      command: http localhost/version
+    - name: pos
+      short: Check POS endpoint
+      command: http localhost/pos/version
