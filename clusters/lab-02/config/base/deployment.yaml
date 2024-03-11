@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config
+  namespace: config
+  labels:
+    app.kubernetes.io/name: config
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+       maxSurge: 1
+       maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: config
+  template:
+    metadata:
+      labels:
+        app: config
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/cse-labs/heartbeat:0.4.0
+          imagePullPolicy: Always
+
+          args:
+            - -log
+
+          env:
+          - name: URI
+            value: /
+          - name: TITLE
+            value: Config
+          - name: Region
+            value: central
+          - name: State
+            value: tx
+          - name: City
+            value: atx
+          - name: Store
+            value: lab-02
+          - name: Ring
+            value: pilot
+          - name: Namespace
+            value: config
+          - name: Application
+            value: config
+
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+
+          livenessProbe:
+            httpGet:
+              path: //healthz
+              port: http
+            initialDelaySeconds: 5
+            failureThreshold: 10
+            periodSeconds: 60
+
+          resources:
+            requests:
+              cpu: 200m
+              memory: 64Mi
+            limits:
+              cpu: 400m
+              memory: 128Mi
