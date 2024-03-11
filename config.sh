@@ -51,7 +51,7 @@ tag=$(curl -s https://api.github.com/repos/cse-labs/res-edge-labs/releases/lates
 wget -O kic.tar.gz "https://github.com/cse-labs/res-edge-labs/releases/download/$tag/kic-$tag-linux-amd64.tar.gz"
 tar -xvzf kic.tar.gz -C /$HOME/bin
 rm kic.tar.gz
-cp -r .kic $HOME/bin
+cp -r wsl/.kic $HOME/bin
 
 # install oh my zsh
 bash -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
