@@ -4,6 +4,18 @@ WSL is a great developer experience for Windows. It requires no additional licen
 
 These instructions work on a local Windows host as well as a virtual Windows host such as [Microsoft Dev Box](https://learn.microsoft.com/en-us/azure/dev-box/overview-what-is-microsoft-dev-box). For virtual hosts, `nested virtualization` must be supported.
 
+## Install VS Code Extension
+
+- Install VS Code (if necessary)
+  - Insure `code` is on your path
+- Install VS Code Remote Extensions Pack
+
+```bash
+
+code --install-extension ms-vscode-remote.vscode-remote-extensionpack
+
+```
+
 ## Install WSL (version 2)
 
 - From an elevated Command Prompt or PowerShell
