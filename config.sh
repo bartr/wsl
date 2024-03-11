@@ -42,6 +42,12 @@ git config --global core.editor "nano -w"
 
 dotnet tool install --global webvalidate
 
+# install kic
+tag=$(curl -s https://api.github.com/repos/cse-labs/res-edge-labs/releases/latest | grep tag_name | cut -d '"' -f4)
+wget -O kic.tar.gz "https://github.com/cse-labs/res-edge-labs/releases/download/$tag/kic-$tag-linux-amd64.tar.gz"
+tar -xvzf kic.tar.gz -C /$HOME/bin
+rm kic.tar.gz
+
 # install oh my zsh
 bash -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -60,6 +66,7 @@ bash -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 mkdir -p "$HOME/.oh-my-zsh/completions"
 kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
+kic completion zsh > "$HOME/.oh-my-zsh/completions/_kic"
 k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
 kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
 gh completion zsh > "$HOME/.oh-my-zsh/completions/_gh"
