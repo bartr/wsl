@@ -211,13 +211,13 @@ wsl -- code wsl
 
 ## Lagniappe (a little extra)
 
-The WSL and VS Code teams have done a great job at integrating the Linux developer experience. Here are a few `tricks`
+The WSL and VS Code teams have done a great job at integrating the Linux developer experience on Windows. Here are a few `tricks`
 
 - If you logged into GitHub from Windows, "it just works" in the VS Code terminal in WSL
   - Note that it does not work from an SSH terminal - you have to configure first
 - If you have the `az CLI` installed and logged in via Windows, "it just works" in WSL.
   - Just type `az account show` from your VS Code terminal in WSL
-  - Type `which az` and you'll notice that it runs from `/mnt/c/...`
+  - Type `which az` and you'll notice that it runs from `/mnt/c/Program Files/Microsoft SDKs/Azure/CLI2/wbin/az`
 - You can access your Windows host machine from `/mnt/c/..`
   - Try `cd /mnt/c/Users/$USER` (assuming you used the same user name)
 - Type `path` from your VS Code terminal to see all of the Windows paths mounted
@@ -235,30 +235,7 @@ The WSL and VS Code teams have done a great job at integrating the Linux develop
 - Typing `..` or `...` or `......` will go back one or more directories in the tree
 - Type `cd ~/wsl/deploy/heartbeat` and then `code *.yaml` to open all the yaml files
 - Typing `code dirName` will open a new instance of code at that directory
-
-### Stop the WSL Instance
-
-```bash
-
-wsl -t ubuntu
-
-```
-
-### Destroy the WSL Instance
-
-```bash
-
-wsl --unregister ubuntu
-
-```
-
-### Stop WSL
-
-```bash
-
-wsl --shutdown
-
-```
+  - This is awesome for `mono repos`
 
 ## Support
 
