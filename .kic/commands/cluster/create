@@ -1,0 +1,20 @@
+#!/bin/bash
+
+cd "$HOME/bin/.kic"
+
+# validate config file
+if [ ! -f k3d.yaml ]; then
+	echo "File not found - k3d.yaml"
+	exit 1
+fi
+
+k3d cluster delete
+
+set -e
+
+echo ""
+echo "Creating cluster ..."
+
+k3d cluster create \
+    --k3s-arg '--no-deploy=traefik@server:0' \
+    --config k3d.yaml
