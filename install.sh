@@ -22,6 +22,9 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of
 chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list
 
+curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list > /etc/apt/sources.list.d/msprod.list
+
 apt-get update
 
 apt-get install -y apt-utils dialog apt-transport-https ca-certificates software-properties-common
@@ -31,6 +34,7 @@ apt-get install -y jq zip unzip httpie dnsutils
 apt-get install -y dotnet-sdk-7.0 golang
 apt-get install -y docker-ce docker-ce-cli containerd.io
 apt-get install -y gh
+ACCEPT_EULA=y apt-get install -y mssql-tools unixodbc-dev
 
 # fix dotnet install issue
 # cp -r /usr/share/dotnet/* /usr/lib/dotnet/

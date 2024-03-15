@@ -16,7 +16,10 @@ mkdir -p $HOME/.k9s
     echo ""
     echo 'cd $HOME'
 
-    echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.dotnet/tools:\$HOME/go/bin"
+    echo "export PATH=\$PATH:/opt/mssql-tools/bin:\$HOME/bin:\$HOME/.dotnet/tools:\$HOME/go/bin"
+    echo "export GO111MODULE=on"
+    echo "export KUBECONFIG=/mnt/c/Users/$USER/.kube/config"
+    echo "export MSSQL_NAME=localhost"
     echo ""
 
     echo "alias k='kubectl'"
@@ -30,10 +33,6 @@ mkdir -p $HOME/.k9s
     echo "alias kgi='kubectl get ingress -A'"
     echo "alias kgc='kubectl config get-contexts'"
     echo "alias ipconfig='ip -4 a show eth0 | grep inet | sed \"s/inet//g\" | sed \"s/ //g\" | cut -d / -f 1'"
-    echo ""
-
-    echo "export GO111MODULE=on"
-    # echo "export KUBECONFIG=/mnt/c/Users/$USER/.kube/config"
 } > $HOME/.zshenv
 
 git config --global core.whitespace blank-at-eol,blank-at-eof,space-before-tab
