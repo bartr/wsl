@@ -71,7 +71,8 @@ wsl --install -d ubuntu
 
 ## Set git config
 
-- Change the values
+- Change the name and email
+- Git needs these values set for commits
 
 ```bash
 
@@ -96,17 +97,16 @@ wsl -- sudo ./install.sh
 ## Finish Setup
 
 - This will start the WSL shell in VS Code
+- Use "ctl `" to open a terminal (if necessary)
+  - Note that the second "wsl" is this repo directory
+  - You could use "." or "~" for $HOME
+    - Or whatever repo you have cloned and want to work on
 
   ```powershell
 
-  # note that the second "wsl" is this repo directory
-  # you could use "." or "~" for $HOME
-  # or whatever repo you have cloned and want to work on
   wsl -- code wsl
 
   ```
-
-- Use "ctl `" to open a terminal (if necessary)
 
 ## Save the Image
 
