@@ -71,13 +71,14 @@ wsl --install -d ubuntu
 
 ## Set git config
 
-- Change the values then exit the shell
+- Change the values
 
 ```bash
 
 git config --global user.name bartr
 git config --global user.email bartr@microsoft.com
 
+# exit the shell
 exit
 
 ```

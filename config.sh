@@ -37,6 +37,7 @@ mkdir -p $HOME/.k9s
     echo "alias ipconfig='ip -4 a show eth0 | grep inet | sed \"s/inet//g\" | sed \"s/ //g\" | cut -d / -f 1'"
 } > $HOME/.zshenv
 
+
 git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 git config --global core.whitespace blank-at-eol,blank-at-eof,space-before-tab
 git config --global pull.rebase false
