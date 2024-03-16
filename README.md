@@ -53,7 +53,6 @@ wsl --set-default-version 2
 
 - Reboot if necessary
   - After you reboot, WSL will automatically begin the install process
-    - Press <ctl><c> to abort that process
 
 ## Start Ubuntu in WSL
 
@@ -68,23 +67,14 @@ wsl --install -d ubuntu
 
 ## Set git config
 
-- Change the values
+- Change the values then exit the shell
 
 ```bash
 
 git config --global user.name bartr
 git config --global user.email bartr@microsoft.com
 
-```
-
-## Clone this repo
-
-```bash
-
-cd $HOME
-
-git clone https://github.com/bartr/wsl wsl
-cd wsl
+exit
 
 ```
 
@@ -92,23 +82,13 @@ cd wsl
 
 ```bash
 
-sudo ./install.sh
-
-```
-
-## Configure oh-my-zsh
-
-```bash
-
-./config.sh
+wsl -- sudo ./install.sh
 
 ```
 
 ## Finish Setup
 
-- `exit` the WSL shell until you're back at the Command Prompt
-- Restart the WSL shell
-  - This will start the WSL shell in VS Code
+- This will start the WSL shell in VS Code
 
   ```bash
 
@@ -124,9 +104,9 @@ sudo ./install.sh
 ## Save the Image
 
 - Use WSL to save the image for reuse
-  - Exit WSL into the Command Prompt
   - Close VS Code
 - Change to the directory you want to store the file (3 - 8 GB)
+  - You can store in this directory - .gitignore won't checkin .tar files
 
 ```bash
 

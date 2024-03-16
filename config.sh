@@ -60,6 +60,7 @@ cp -r .kic $HOME/bin
 cd $HOME
 git clone https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
+git clone https://github.com/bartr/wsl
 
 # add to .zshrc
 {

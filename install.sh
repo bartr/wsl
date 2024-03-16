@@ -1,5 +1,8 @@
 #!/bin/bash
 
+cd "$(dirname $BASH_SOURCE[0])"
+export dir=$(pwd)
+
 update-alternatives --set iptables /usr/sbin/iptables-legacy
 
 # no password for sudo
@@ -74,8 +77,13 @@ touch /home/$SUDO_USER/.zshrc
 # change ownership of home directory
 chown -R $SUDO_USER:$SUDO_USER /home/$SUDO_USER
 
-# update wsl.conf
-#printf "\n[user]\ndefault=$SUDO_USER\n" >> /etc/wsl.conf
-
 # start the docker service
 service docker start
+
+echo ""
+echo ""
+echo "running as $SUDO_USER"
+echo ""
+
+cd $dir
+sudo -u $SUDO_USER ./config.sh
