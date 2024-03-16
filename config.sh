@@ -1,6 +1,5 @@
 #!/bin/bash
 
-cd $HOME || exit 1
 export PATH=$PATH:$HOME/bin:$HOME/.dotnet/tools:$HOME/go/bin
 
 # make some directories we will need
@@ -13,13 +12,16 @@ mkdir -p $HOME/bin
 mkdir -p $HOME/.k9s
 
 {
-    echo ""
     echo 'cd $HOME'
+    echo ""
+
+    echo "export PAT="
+    echo "export GITHUB_TOKEN=\$PAT"
+    echo "export KUBECONFIG=/mnt/c/Users/$USER/.kube/config"
+    echo ""
 
     echo "export PATH=\$PATH:/opt/mssql-tools/bin:\$HOME/bin:\$HOME/.dotnet/tools:\$HOME/go/bin"
     echo "export GO111MODULE=on"
-    echo "export KUBECONFIG=/mnt/c/Users/$USER/.kube/config"
-    echo "export MSSQL_NAME=localhost"
     echo ""
 
     echo "alias k='kubectl'"
@@ -35,6 +37,7 @@ mkdir -p $HOME/.k9s
     echo "alias ipconfig='ip -4 a show eth0 | grep inet | sed \"s/inet//g\" | sed \"s/ //g\" | cut -d / -f 1'"
 } > $HOME/.zshenv
 
+git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 git config --global core.whitespace blank-at-eol,blank-at-eof,space-before-tab
 git config --global pull.rebase false
 git config --global init.defaultbranch main
@@ -51,10 +54,12 @@ tag=$(curl -s https://api.github.com/repos/cse-labs/res-edge-labs/releases/lates
 wget -O kic.tar.gz "https://github.com/cse-labs/res-edge-labs/releases/download/$tag/kic-$tag-linux-amd64.tar.gz"
 tar -xvzf kic.tar.gz -C /$HOME/bin
 rm kic.tar.gz
-cp -r wsl/.kic $HOME/bin
+cp -r .kic $HOME/bin
 
 # install oh my zsh
-bash -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+cd $HOME
+git clone https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
+cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 
 # add to .zshrc
 {
@@ -74,6 +79,6 @@ kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 kic completion zsh > "$HOME/.oh-my-zsh/completions/_kic"
 k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
 kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
-gh completion zsh > "$HOME/.oh-my-zsh/completions/_gh"
+gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
 flux completion zsh > "$HOME/.oh-my-zsh/completions/_flux"
 helm completion zsh > "$HOME/.oh-my-zsh/completions/_helm"

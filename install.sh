@@ -1,5 +1,7 @@
 #!/bin/bash
 
+update-alternatives --set iptables /usr/sbin/iptables-legacy
+
 # no password for sudo
 echo "$SUDO_USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$SUDO_USER
 
@@ -9,9 +11,6 @@ usermod -aG sudo $SUDO_USER
 usermod -aG admin $SUDO_USER
 usermod -aG docker $SUDO_USER
 gpasswd -a $SUDO_USER sudo
-
-apt-get update
-apt-get upgrade -y
 
 # add Docker repo
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -69,11 +68,14 @@ cd /usr/local/bin
 curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 cd $OLD_PWD
 
+chsh -s /usr/bin/zsh $SUDO_USER
+touch /home/$SUDO_USER/.zshrc
+
 # change ownership of home directory
 chown -R $SUDO_USER:$SUDO_USER /home/$SUDO_USER
 
 # update wsl.conf
-printf "\n[user]\ndefault=$SUDO_USER\n" >> /etc/wsl.conf
+#printf "\n[user]\ndefault=$SUDO_USER\n" >> /etc/wsl.conf
 
 # start the docker service
 service docker start

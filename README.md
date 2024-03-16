@@ -4,62 +4,11 @@ WSL is a great developer experience for Windows. It requires no additional licen
 
 These instructions work on a local Windows host as well as a virtual Windows host such as [Microsoft Dev Box](https://learn.microsoft.com/en-us/azure/dev-box/overview-what-is-microsoft-dev-box). For virtual hosts, `nested virtualization` must be supported.
 
-## Installation
+## Prerequisites (on Windows host)
 
-- All installs must be done from an elevated Command Prompt
-
-## Install Chocolatey
-
-- If necessary
-
-- Start PowerShell
-
-```powershell
-
-powershell
-
-```
-
-- Install Chcolatey
-
-```powershell
-
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-
-```
-- Exit and restart elevated Command Prompt
-
-## Install Git
-
-- If necessary
-
-```powershell
-
-choco install git
-
-```
-
-## Install VS Code
-
-- If necessary
-
-```powershell
-
-choco install visualstudiocode
-
-```
-
-## Install az CLI
-
-- If necessary
-
-```powershell
-
-choco install azure-cli
-
-```
-
-> Exit and restart elevated Command Prompt
+- Git CLI
+- Visual Studio Code
+- az CLI (if desired)
 
 ## Clone a Repo
 
@@ -96,11 +45,11 @@ wsl --install
 
 - Set WSL to always use verion 2
 
-  ```bash
+```bash
 
-  wsl --set-default-version 2
+wsl --set-default-version 2
 
-  ```
+```
 
 - Reboot if necessary
   - After you reboot, WSL will automatically begin the install process
@@ -111,23 +60,9 @@ wsl --install
 - Enter your user name and password
   - Using the same user name as Windows will make things easier
 
-  ```bash
-
-  wsl --install -d ubuntu
-
-  ```
-
-## Update IP Tables
-
-- Once WSL starts, you will be in a bash prompt inside your Ubuntu VM
-- You will have to enter your password the first time you run `sudo`
-
 ```bash
 
-echo "choose Legacy IP Tables"
-echo ""
-
-sudo update-alternatives --config iptables
+wsl --install -d ubuntu
 
 ```
 
@@ -139,15 +74,6 @@ sudo update-alternatives --config iptables
 
 git config --global user.name bartr
 git config --global user.email bartr@microsoft.com
-
-```
-
-- Use Windows Host credentials
-  - You may have to change the path
-
-```bash
-
-git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 
 ```
 
