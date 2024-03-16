@@ -12,7 +12,7 @@ mkdir -p $HOME/bin
 mkdir -p $HOME/.k9s
 
 {
-    echo 'cd $HOME'
+    echo 'cd $HOME/wsl'
     echo ""
 
     echo "export PAT="
