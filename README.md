@@ -104,7 +104,7 @@ wsl -- sudo ./install.sh
 
   ```powershell
 
-  wsl -- code wsl
+  wsl -- code .
 
   ```
 
@@ -131,7 +131,7 @@ wsl --unregister ubuntu
 wsl --import bartr bartr kic.tar
 
 # start the image in this repo
-wsl -- code wsl
+wsl -- code .
 
 ```
 
