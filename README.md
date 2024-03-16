@@ -10,16 +10,19 @@ These instructions work on a local Windows host as well as a virtual Windows hos
 - Visual Studio Code
 - az CLI (if desired)
 
-## Clone a Repo
+## Clone this Repo
 
-- Clone a repo that requires authentication
-- Setup your Git credentials
+```powershel
+
+git clone https://github.com/bartr/wsl
+
+```
 
 ## Install VS Code Extension
 
 - Install VS Code Remote Extensions Pack
 
-```bash
+```powershell
 
 code --install-extension ms-vscode-remote.vscode-remote-extensionpack
 
@@ -29,15 +32,16 @@ code --install-extension ms-vscode-remote.vscode-remote-extensionpack
 
 - Update WSL
 
-```bash
+```powershell
 
 wsl --update
 
 ```
 
-- If you get an error, you need to install WSL first, then run `wsl --update` again
+- If you get an error that you need to install WSL first, the following command will install WSL
+  - A reboot will be required
 
-```bash
+```powershell
 
 wsl --install
 
@@ -45,21 +49,21 @@ wsl --install
 
 - Set WSL to always use verion 2
 
-```bash
+```powershell
 
 wsl --set-default-version 2
 
 ```
 
 - Reboot if necessary
-  - After you reboot, WSL will automatically begin the install process
+  - After you reboot, WSL will automatically begin the install process and you can skip the next step
 
 ## Start Ubuntu in WSL
 
 - Enter your user name and password
   - Using the same user name as Windows will make things easier
 
-```bash
+```powershell
 
 wsl --install -d ubuntu
 
@@ -80,7 +84,9 @@ exit
 
 ## Install components
 
-```bash
+- Enter the password you used when creating the WSL VM
+
+```powershell
 
 wsl -- sudo ./install.sh
 
@@ -90,9 +96,9 @@ wsl -- sudo ./install.sh
 
 - This will start the WSL shell in VS Code
 
-  ```bash
+  ```powershell
 
-  # note that the second "wsl" is the repo name / directory
+  # note that the second "wsl" is this repo directory
   # you could use "." or "~" for $HOME
   # or whatever repo you have cloned and want to work on
   wsl -- code wsl
@@ -106,9 +112,9 @@ wsl -- sudo ./install.sh
 - Use WSL to save the image for reuse
   - Close VS Code
 - Change to the directory you want to store the file (3 - 8 GB)
-  - You can store in this directory - .gitignore won't checkin .tar files
+  - You can store in this directory - .gitignore won't checkin .tar or .vhdx files
 
-```bash
+```powershell
 
 # stop the instance
 wsl -t ubuntu
@@ -123,7 +129,7 @@ wsl --unregister ubuntu
 # change "bartr"
 wsl --import bartr bartr kic.tar
 
-# start the image
+# start the image in this repo
 wsl -- code wsl
 
 ```
