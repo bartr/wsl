@@ -1,0 +1,61 @@
+{
+  "SchemaVersion": "1.11",
+  "Version": "1.0",
+  "DeploymentType": "SingleMachineCluster",
+  "Init": {
+    "ServiceIPRangeSize": 8
+  },
+  "Arc": {
+    "ClusterName": null,
+    "Location": null,
+    "ResourceGroupName": null,
+    "SubscriptionId": null,
+    "TenantId": null,
+    "ClientId": null,
+    "ClientSecret": null
+  },
+  "Network": {
+    "NetworkPlugin": "flannel",
+    "Ip4AddressPrefix": null,
+    "InternetDisabled": false,
+    "SkipDnsCheck": false,
+    "Proxy": {
+      "Http": null,
+      "Https": null,
+      "No": "localhost,127.0.0.0/8,192.168.0.0/16,172.17.0.0/16,10.42.0.0/16,10.43.0.0/16,10.96.0.0/12,10.244.0.0/16,.svc"
+    }
+  },
+  "User": {
+    "AcceptEula": null,
+    "AcceptOptionalTelemetry": null,
+    "VolumeLicense": {
+      "EnrollmentID": null,
+      "PartNumber": null
+    }
+  },
+  "Machines": [
+    {
+      "LinuxNode": {
+        "CpuCount": 4,
+        "MemoryInMB": 4096,
+        "DataSizeInGB": 10,
+        "LogSizeInGB": 1,
+        "TimeoutSeconds": 300,
+        "TpmPassthrough": false,
+        "SecondaryNetworks": [
+          {
+            "VMSwitchName": null,
+            "Ip4Address": null,
+            "Ip4GatewayAddress": null,
+            "Ip4PrefixLength": null
+          }
+        ],
+        "GpuPassthrough": {
+          "Name": null,
+          "Type": null,
+          "Count": null
+        }
+      }
+    }
+  ]
+}
