@@ -74,7 +74,7 @@ cp -r wsl/.kic $HOME/bin
 {
     echo ""
     echo 'PROMPT="%{$fg[blue]%}%~%{$reset_color%}"'
-    echo 'PROMPT+=" $(git_prompt_info)"'
+    echo "PROMPT+=' \$(git_prompt_info)'"
     echo 'ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}(%{$fg[red]%}"'
     echo 'ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "'
     echo 'ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[red]%}%1{✗%}"'
