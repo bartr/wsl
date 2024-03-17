@@ -10,7 +10,7 @@ fi
 
 echo "installing base"
 echo ""
-./base.sh
+./scripts/base.sh
 
 echo ""
 echo ""
@@ -41,4 +41,4 @@ echo "running as $SUDO_USER"
 echo ""
 
 cd $dir
-sudo -u $SUDO_USER ./config.sh
+sudo -u $SUDO_USER ./scripts/config.sh
