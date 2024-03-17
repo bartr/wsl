@@ -3,6 +3,11 @@
 cd "$(dirname $BASH_SOURCE[0])"
 export dir=$(pwd)
 
+if [ "$USER" != "root" ] || [ "$SUDO_USER" == "" ]; then
+    echo "You must run using sudo ./install.sh"
+    exit 1
+fi
+
 update-alternatives --set iptables /usr/sbin/iptables-legacy
 
 # create / add to groups

@@ -3,9 +3,14 @@
 cd "$(dirname $BASH_SOURCE[0])"
 export dir=$(pwd)
 
+if [ "$USER" != "root" ] || [ "$SUDO_USER" == "" ]; then
+    echo "You must run using sudo ./install.sh"
+    exit 1
+fi
+
 echo "installing base"
 echo ""
-./install-base.sh
+./base.sh
 
 echo ""
 echo ""

@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "$USER" == "root" ]; then
+    echo "You cannot run as user:root"
+    exit 1
+fi
+
+
 export PATH=$PATH:$HOME/bin:$HOME/.dotnet/tools:$HOME/go/bin
 
 # make some directories we will need
