@@ -55,13 +55,14 @@ tag=$(curl -s https://api.github.com/repos/cse-labs/res-edge-labs/releases/lates
 wget -O kic.tar.gz "https://github.com/cse-labs/res-edge-labs/releases/download/$tag/kic-$tag-linux-amd64.tar.gz"
 tar -xvzf kic.tar.gz -C /$HOME/bin
 rm kic.tar.gz
-cp -r .kic $HOME/bin
 
 # install oh my zsh
 cd $HOME
 git clone https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
+
 git clone https://github.com/bartr/wsl
+cp -r wsl/.kic $HOME/bin
 
 # add to .zshrc
 {
