@@ -21,7 +21,8 @@ echo ""
 echo "$SUDO_USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$SUDO_USER
 echo -e "\n[user]\ndefault=$SUDO_USER\n" >> /etc/wsl.conf
 
-# add to groups
+# create / add to groups
+groupadd docker
 usermod -aG sudo $SUDO_USER
 usermod -aG admin $SUDO_USER
 usermod -aG docker $SUDO_USER

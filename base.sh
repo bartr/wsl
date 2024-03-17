@@ -4,14 +4,11 @@ cd "$(dirname $BASH_SOURCE[0])"
 export dir=$(pwd)
 
 if [ "$USER" != "root" ] || [ "$SUDO_USER" == "" ]; then
-    echo "You must run using sudo ./install.sh"
+    echo "You must run using sudo ./base.sh"
     exit 1
 fi
 
 update-alternatives --set iptables /usr/sbin/iptables-legacy
-
-# create / add to groups
-groupadd docker
 
 # add Docker repo
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
