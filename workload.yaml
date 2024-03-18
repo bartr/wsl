@@ -1,0 +1,12 @@
+$schema: "1.0"
+name: devbox-customization
+tasks:
+  - name: powershell
+    runAsUser: true
+    parameters:
+      command: |
+        # Install WSL2 distros
+        wsl --install
+
+        # Install VSCode extensions
+        code --install-extension ms-vscode-remote.remote-wsl;
