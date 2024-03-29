@@ -62,6 +62,14 @@ wget -O kic.tar.gz "https://github.com/cse-labs/res-edge-labs/releases/download/
 tar -xvzf kic.tar.gz -C /$HOME/bin
 rm kic.tar.gz
 
+# install ds
+wget -O ds.tar.gz "https://github.com/cse-labs/res-edge-labs/releases/download/$tag/ds-$tag-linux-amd64.tar.gz"
+tar -xvzf ds.tar.gz -C /$HOME/bin
+rm ds.tar.gz
+
+# update sql command
+sed -i 's/31433/8433/g' $HOME/bin/sql
+
 # install oh my zsh
 cd $HOME
 git clone https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
