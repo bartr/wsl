@@ -28,13 +28,13 @@ apt-get install -y apt-utils dialog apt-transport-https ca-certificates software
 apt-get install -y libssl-dev libffi-dev python2-dev build-essential cifs-utils lsb-release gnupg-agent
 apt-get install -y curl git wget nano zsh
 apt-get install -y jq zip unzip httpie dnsutils
-apt-get install -y dotnet-sdk-7.0 golang
+apt-get install -y dotnet-sdk-8.0 golang
 apt-get install -y docker-ce docker-ce-cli containerd.io
 apt-get install -y gh
 ACCEPT_EULA=y apt-get install -y mssql-tools unixodbc-dev
 
 # fix dotnet install issue
-cp -r /usr/share/dotnet/* /usr/lib/dotnet/
+#cp -r /usr/share/dotnet/* /usr/lib/dotnet/
 
 # install kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
