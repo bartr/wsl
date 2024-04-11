@@ -36,8 +36,8 @@
   "Machines": [
     {
       "LinuxNode": {
-        "CpuCount": 4,
-        "MemoryInMB": 4096,
+        "CpuCount": 6,
+        "MemoryInMB": 8192,
         "DataSizeInGB": 10,
         "LogSizeInGB": 1,
         "TimeoutSeconds": 300,
