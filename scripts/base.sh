@@ -10,6 +10,17 @@ fi
 
 update-alternatives --set iptables /usr/sbin/iptables-legacy
 
+apt-get update
+apt-get install -y gpg wget
+apt-get install -y apt-utils dialog apt-transport-https ca-certificates software-properties-common
+apt-get install -y libssl-dev libffi-dev python2-dev build-essential cifs-utils lsb-release gnupg-agent
+apt-get install -y curl git wget nano zsh
+apt-get install -y jq zip unzip httpie dnsutils
+apt-get install -y golang
+
+apt-get upgrade -y
+apt-get install -y dotnet-sdk-7.0 dotnet-sdk-8.0
+
 # add Docker repo
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
@@ -19,16 +30,10 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of
 chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list
 
-curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list > /etc/apt/sources.list.d/msprod.list
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/microsoft.asc.gpg
+curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list > /etc/apt/sources.list.d/microsoft-prod.list
 
 apt-get update
-
-apt-get install -y apt-utils dialog apt-transport-https ca-certificates software-properties-common
-apt-get install -y libssl-dev libffi-dev python2-dev build-essential cifs-utils lsb-release gnupg-agent
-apt-get install -y curl git wget nano zsh
-apt-get install -y jq zip unzip httpie dnsutils
-apt-get install -y dotnet-sdk-8.0 golang
 apt-get install -y docker-ce docker-ce-cli containerd.io
 apt-get install -y gh
 ACCEPT_EULA=y apt-get install -y mssql-tools unixodbc-dev

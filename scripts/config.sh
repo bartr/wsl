@@ -90,9 +90,9 @@ cp -r wsl/.kic $HOME/bin
 
     echo ""
     echo "# start a process so WSL doesn't exit"
-    echo "if ! ps -ef | grep \"sleep infinity\" | grep -v grep > /dev/null; then"
-    echo "    nohup sleep infinity >& \$HOME/nohup.out &"
-    echo "fi"
+    echo "#if ! ps -ef | grep \"sleep infinity\" | grep -v grep > /dev/null; then"
+    echo "#    nohup sleep infinity >& \$HOME/nohup.out &"
+    echo "#fi"
 
     echo ""
     echo "compinit"
