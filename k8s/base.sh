@@ -8,6 +8,11 @@ if [ "$USER" != "root" ] || [ "$SUDO_USER" == "" ]; then
     exit 1
 fi
 
+echo "$SUDO_USER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$SUDO_USER
+chmod 0440 /etc/sudoers.d/$SUDO_USER
+
+exit 1
+
 #update-alternatives --set iptables /usr/sbin/iptables-legacy
 
 apt-get update
