@@ -6,7 +6,7 @@ if [ "$USER" == "root" ]; then
 fi
 
 
-export PATH=$PATH:$HOME/bin:$HOME/.dotnet/tools:$HOME/go/bin
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.dotnet/tools:$HOME/go/bin:$HOME/.local/share/fnm
 
 # make some directories we will need
 mkdir -p $HOME/.ssh
@@ -27,7 +27,7 @@ mkdir -p $HOME/bin
     echo ""
 
     # echo "export PATH=\$PATH:/opt/mssql-tools/bin:\$HOME/bin:\$HOME/.dotnet/tools:\$HOME/go/bin"
-    echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.dotnet/tools:\$HOME/go/bin"
+    echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:\$HOME/.dotnet/tools:\$HOME/go/bin:\$HOME/.local/share/fnm"
     echo "export GO111MODULE=on"
     echo ""
 
@@ -96,8 +96,17 @@ cp -r wsl/.kic $HOME/bin
     echo "#fi"
 
     echo ""
+    echo 'eval "$(fnm env --use-on-cd --shell zsh)"'
+    echo ""
     echo "compinit"
 } >> $HOME/.zshrc
+
+# install fnm and Node LTS
+curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+export PATH="$HOME/.local/share/fnm:$PATH"
+eval "$(fnm env)"
+fnm install --lts
+npm install -g @anthropic-ai/claude-code
 
 mkdir -p "$HOME/.oh-my-zsh/completions"
 kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
