@@ -16,9 +16,9 @@ apt-get install -y apt-utils dialog apt-transport-https ca-certificates software
 apt-get install -y libssl-dev libffi-dev python2-dev build-essential cifs-utils lsb-release gnupg-agent
 apt-get install -y curl git wget nano zsh
 apt-get install -y jq zip unzip httpie dnsutils
-apt-get install -y golang
-apt-get install -y nginx mariadb-server mariadb-client
-apt-get install -y php-fpm php-common php-mysql php-gmp php-curl php-intl php-mbstring php-xmlrpc php-gd php-xml php-cli php-zip
+#apt-get install -y golang
+#apt-get install -y nginx mariadb-server mariadb-client
+#apt-get install -y php-fpm php-common php-mysql php-gmp php-curl php-intl php-mbstring php-xmlrpc php-gd php-xml php-cli php-zip
 
 apt-get upgrade -y
 #apt-get install -y dotnet-sdk-7.0 dotnet-sdk-8.0
@@ -49,7 +49,7 @@ install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 rm -f kubectl
 
 # install k3d
-wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=v5.4.6 bash
+#wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=v5.4.6 bash
 
 # install flux
 curl -s https://fluxcd.io/install.sh | bash
@@ -73,11 +73,11 @@ cd /usr/local/bin
 curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 cd $OLD_PWD
 
-wget https://wordpress.org/latest.tar.gz
-tar -xvzf latest.tar.gz
-mv wordpress /var/www/wordpress
-chown -R www-data:www-data /var/www/wordpress/
-chmod -R 755 /var/www/wordpress/
+#wget https://wordpress.org/latest.tar.gz
+#tar -xvzf latest.tar.gz
+#mv wordpress /var/www/wordpress
+#chown -R www-data:www-data /var/www/wordpress/
+#chmod -R 755 /var/www/wordpress/
 
 # start the docker service
 service docker start

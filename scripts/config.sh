@@ -13,20 +13,21 @@ mkdir -p $HOME/.ssh
 chmod 700 $HOME/.ssh
 mkdir -p $HOME/go/src
 mkdir -p $HOME/go/bin
-mkdir -p $HOME/.kube
+#mkdir -p $HOME/.kube
 mkdir -p $HOME/bin
-mkdir -p $HOME/.k9s
+#mkdir -p $HOME/.k9s
 
 {
     echo 'cd $HOME'
     echo ""
 
-    echo "export PAT="
-    echo "export GITHUB_TOKEN=\$PAT"
+    # echo "export PAT="
+    # echo "export GITHUB_TOKEN=\$PAT"
     echo "export KUBECONFIG=/mnt/c/Users/$USER/.kube/config"
     echo ""
 
-    echo "export PATH=\$PATH:/opt/mssql-tools/bin:\$HOME/bin:\$HOME/.dotnet/tools:\$HOME/go/bin"
+    # echo "export PATH=\$PATH:/opt/mssql-tools/bin:\$HOME/bin:\$HOME/.dotnet/tools:\$HOME/go/bin"
+    echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.dotnet/tools:\$HOME/go/bin"
     echo "export GO111MODULE=on"
     echo ""
 
@@ -54,21 +55,21 @@ git config --global diff.colorMoved zebra
 git config --global devcontainers-theme.show-dirty 1
 git config --global core.editor "nano -w"
 
-dotnet tool install --global webvalidate
+# dotnet tool install --global webvalidate
 
 # install kic
-tag=$(curl -s https://api.github.com/repos/cse-labs/res-edge-labs/releases/latest | grep tag_name | cut -d '"' -f4)
-wget -O kic.tar.gz "https://github.com/cse-labs/res-edge-labs/releases/download/$tag/kic-$tag-linux-amd64.tar.gz"
-tar -xvzf kic.tar.gz -C /$HOME/bin
-rm kic.tar.gz
+# tag=$(curl -s https://api.github.com/repos/cse-labs/res-edge-labs/releases/latest | grep tag_name | cut -d '"' -f4)
+# wget -O kic.tar.gz "https://github.com/cse-labs/res-edge-labs/releases/download/$tag/kic-$tag-linux-amd64.tar.gz"
+# tar -xvzf kic.tar.gz -C /$HOME/bin
+# rm kic.tar.gz
 
 # install ds
-wget -O ds.tar.gz "https://github.com/cse-labs/res-edge-labs/releases/download/$tag/ds-$tag-linux-amd64.tar.gz"
-tar -xvzf ds.tar.gz -C /$HOME/bin
-rm ds.tar.gz
+# wget -O ds.tar.gz "https://github.com/cse-labs/res-edge-labs/releases/download/$tag/ds-$tag-linux-amd64.tar.gz"
+# tar -xvzf ds.tar.gz -C /$HOME/bin
+# rm ds.tar.gz
 
 # update sql command
-sed -i 's/31433/8433/g' $HOME/bin/sql
+# sed -i 's/31433/8433/g' $HOME/bin/sql
 
 # install oh my zsh
 cd $HOME
@@ -100,8 +101,8 @@ cp -r wsl/.kic $HOME/bin
 
 mkdir -p "$HOME/.oh-my-zsh/completions"
 kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
-kic completion zsh > "$HOME/.oh-my-zsh/completions/_kic"
-k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
+# kic completion zsh > "$HOME/.oh-my-zsh/completions/_kic"
+#k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
 kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
 #gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
 flux completion zsh > "$HOME/.oh-my-zsh/completions/_flux"

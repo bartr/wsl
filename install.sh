@@ -19,7 +19,7 @@ echo ""
 
 # no password for sudo
 echo "$SUDO_USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$SUDO_USER
-echo -e "\n[user]\ndefault=$SUDO_USER\n" >> /etc/wsl.conf
+#echo -e "\n[user]\ndefault=$SUDO_USER\n" >> /etc/wsl.conf
 
 # create / add to groups
 groupadd docker
