@@ -21,26 +21,20 @@ mkdir -p $HOME/bin
     echo 'cd $HOME'
     echo ""
 
-    # echo "export PAT="
-    # echo "export GITHUB_TOKEN=\$PAT"
-    echo "export KUBECONFIG=/mnt/c/Users/$USER/.kube/config"
-    echo ""
-
-    # echo "export PATH=\$PATH:/opt/mssql-tools/bin:\$HOME/bin:\$HOME/.dotnet/tools:\$HOME/go/bin"
     echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:\$HOME/.dotnet/tools:\$HOME/go/bin:\$HOME/.local/share/fnm"
     echo "export GO111MODULE=on"
     echo ""
 
-    echo "alias k='kubectl'"
-    echo "alias kaf='kubectl apply -f'"
-    echo "alias kdelf='kubectl delete -f'"
-    echo "alias kl='kubectl logs'"
-    echo "alias kak='kubectl apply -k'"
-    echo "alias kuse='kubectl config use-context'"
-    echo "alias kgp='kubectl get pods -A'"
-    echo "alias kgs='kubectl get svc -A'"
-    echo "alias kgi='kubectl get ingress -A'"
-    echo "alias kgc='kubectl config get-contexts'"
+    # echo "alias k='kubectl'"
+    # echo "alias kaf='kubectl apply -f'"
+    # echo "alias kdelf='kubectl delete -f'"
+    # echo "alias kl='kubectl logs'"
+    # echo "alias kak='kubectl apply -k'"
+    # echo "alias kuse='kubectl config use-context'"
+    # echo "alias kgp='kubectl get pods -A'"
+    # echo "alias kgs='kubectl get svc -A'"
+    # echo "alias kgi='kubectl get ingress -A'"
+    # echo "alias kgc='kubectl config get-contexts'"
     echo "alias ipconfig='ip -4 a show eth0 | grep inet | sed \"s/inet//g\" | sed \"s/ //g\" | cut -d / -f 1'"
 } > $HOME/.zshenv
 
@@ -54,22 +48,6 @@ git config --global core.pager more
 git config --global diff.colorMoved zebra
 git config --global devcontainers-theme.show-dirty 1
 git config --global core.editor "nano -w"
-
-# dotnet tool install --global webvalidate
-
-# install kic
-# tag=$(curl -s https://api.github.com/repos/cse-labs/res-edge-labs/releases/latest | grep tag_name | cut -d '"' -f4)
-# wget -O kic.tar.gz "https://github.com/cse-labs/res-edge-labs/releases/download/$tag/kic-$tag-linux-amd64.tar.gz"
-# tar -xvzf kic.tar.gz -C /$HOME/bin
-# rm kic.tar.gz
-
-# install ds
-# wget -O ds.tar.gz "https://github.com/cse-labs/res-edge-labs/releases/download/$tag/ds-$tag-linux-amd64.tar.gz"
-# tar -xvzf ds.tar.gz -C /$HOME/bin
-# rm ds.tar.gz
-
-# update sql command
-# sed -i 's/31433/8433/g' $HOME/bin/sql
 
 # install oh my zsh
 cd $HOME
@@ -90,12 +68,6 @@ cp -r wsl/.kic $HOME/bin
     echo 'ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"'
 
     echo ""
-    echo "# start a process so WSL doesn't exit"
-    echo "#if ! ps -ef | grep \"sleep infinity\" | grep -v grep > /dev/null; then"
-    echo "#    nohup sleep infinity >& \$HOME/nohup.out &"
-    echo "#fi"
-
-    echo ""
     echo 'eval "$(fnm env --use-on-cd --shell zsh)"'
     echo ""
     echo "compinit"
@@ -109,10 +81,9 @@ fnm install --lts
 npm install -g @anthropic-ai/claude-code
 
 mkdir -p "$HOME/.oh-my-zsh/completions"
-kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
-# kic completion zsh > "$HOME/.oh-my-zsh/completions/_kic"
+#kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 #k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
-kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
-#gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
-flux completion zsh > "$HOME/.oh-my-zsh/completions/_flux"
-helm completion zsh > "$HOME/.oh-my-zsh/completions/_helm"
+#kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
+gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
+#flux completion zsh > "$HOME/.oh-my-zsh/completions/_flux"
+#helm completion zsh > "$HOME/.oh-my-zsh/completions/_helm"
