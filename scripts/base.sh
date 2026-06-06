@@ -12,9 +12,9 @@ update-alternatives --set iptables /usr/sbin/iptables-legacy
 
 apt-get update
 apt-get install -y gpg wget
-apt-get install -y apt-utils dialog apt-transport-https ca-certificates software-properties-common
-apt-get install -y libssl-dev libffi-dev python2-dev build-essential cifs-utils lsb-release gnupg-agent
-apt-get install -y curl git wget nano zsh
+apt-get install -y apt-utils dialog ca-certificates software-properties-common
+apt-get install -y libssl-dev libffi-dev build-essential cifs-utils gnupg
+apt-get install -y curl git nano zsh
 apt-get install -y jq zip unzip httpie dnsutils
 
 apt-get upgrade -y

@@ -22,7 +22,6 @@ mkdir -p $HOME/bin
     echo ""
 
     echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:\$HOME/.dotnet/tools:\$HOME/go/bin:\$HOME/.local/share/fnm"
-    echo "export GO111MODULE=on"
     echo ""
 
     # echo "alias k='kubectl'"
@@ -42,19 +41,18 @@ mkdir -p $HOME/bin
 git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 git config --global core.whitespace blank-at-eol,blank-at-eof,space-before-tab
 git config --global pull.rebase false
-git config --global init.defaultbranch main
+git config --global init.defaultBranch main
 git config --global fetch.prune true
-git config --global core.pager more
 git config --global diff.colorMoved zebra
 git config --global devcontainers-theme.show-dirty 1
 git config --global core.editor "nano -w"
 
 # install oh my zsh
 cd $HOME
-git clone https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
+git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 
-git clone https://github.com/bartr/wsl
+git clone --depth 1 https://github.com/bartr/wsl
 cp -r wsl/.kic $HOME/bin
 
 # add to .zshrc
