@@ -43,6 +43,17 @@ apt-get install -y docker-ce docker-ce-cli containerd.io
 # fix dotnet install issue
 #cp -r /usr/share/dotnet/* /usr/lib/dotnet/
 
+# install latest Go
+GO_VERSION=$(curl -fsSL https://go.dev/VERSION?m=text | head -n 1)
+GO_ARCH=$(dpkg --print-architecture)
+GO_TARBALL="${GO_VERSION}.linux-${GO_ARCH}.tar.gz"
+curl -fsSL "https://go.dev/dl/${GO_TARBALL}" -o "/tmp/${GO_TARBALL}"
+rm -rf /usr/local/go
+tar -C /usr/local -xzf "/tmp/${GO_TARBALL}"
+rm -f "/tmp/${GO_TARBALL}"
+ln -sf /usr/local/go/bin/go /usr/local/bin/go
+ln -sf /usr/local/go/bin/gofmt /usr/local/bin/gofmt
+
 # install kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
