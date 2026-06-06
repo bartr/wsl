@@ -13,12 +13,11 @@ mkdir -p $HOME/.ssh
 chmod 700 $HOME/.ssh
 mkdir -p $HOME/go/src
 mkdir -p $HOME/go/bin
-#mkdir -p $HOME/.kube
 mkdir -p $HOME/bin
-#mkdir -p $HOME/.k9s
+mkdir -p $HOME/.local/bin
 
 {
-    echo 'cd $HOME'
+    echo 'export GITHUB_TOKEN='
     echo ""
 
     echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:\$HOME/.dotnet/tools:\$HOME/go/bin:\$HOME/.local/share/fnm"
@@ -38,7 +37,7 @@ mkdir -p $HOME/bin
 } > $HOME/.zshenv
 
 
-git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
+git config --global credential.helper store
 git config --global core.whitespace blank-at-eol,blank-at-eof,space-before-tab
 git config --global pull.rebase false
 git config --global init.defaultBranch main
