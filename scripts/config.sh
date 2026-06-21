@@ -17,7 +17,7 @@ mkdir -p $HOME/bin
 mkdir -p $HOME/.local/bin
 
 {
-    echo 'export GITHUB_TOKEN='
+    echo 'export GITHUB_TOKEN=$GIBHUB_TOKEN'
     echo ""
 
     echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:\$HOME/.dotnet/tools:\$HOME/go/bin:\$HOME/.local/share/fnm"
@@ -36,6 +36,7 @@ mkdir -p $HOME/.local/bin
     echo "alias ipconfig='ip -4 a show eth0 | grep inet | sed \"s/inet//g\" | sed \"s/ //g\" | cut -d / -f 1'"
 } > $HOME/.zshenv
 
+echo "https://bartr:$GITHUB_TOKEN@github.com" > $HOME/.git-credentials
 
 git config --global credential.helper store
 git config --global core.whitespace blank-at-eol,blank-at-eof,space-before-tab
@@ -52,7 +53,6 @@ git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 
 git clone --depth 1 https://github.com/bartr/wsl
-cp -r wsl/.kic $HOME/bin
 
 # add to .zshrc
 {
@@ -70,13 +70,6 @@ cp -r wsl/.kic $HOME/bin
     echo "compinit"
 } >> $HOME/.zshrc
 
-# install fnm and Node LTS
-curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
-export PATH="$HOME/.local/share/fnm:$PATH"
-eval "$(fnm env)"
-fnm install --lts
-npm install -g @anthropic-ai/claude-code
-
 mkdir -p "$HOME/.oh-my-zsh/completions"
 #kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 #k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
@@ -84,3 +77,11 @@ mkdir -p "$HOME/.oh-my-zsh/completions"
 gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
 #flux completion zsh > "$HOME/.oh-my-zsh/completions/_flux"
 #helm completion zsh > "$HOME/.oh-my-zsh/completions/_helm"
+
+# install fnm and Node LTS
+curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+export PATH="$HOME/.local/share/fnm:$PATH"
+eval "$(fnm env)"
+fnm install --lts
+eval "$(fnm env)"
+npm install -g @anthropic-ai/claude-code

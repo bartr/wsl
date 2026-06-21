@@ -78,3 +78,20 @@ ln -sf /usr/local/go/bin/gofmt /usr/local/bin/gofmt
 
 # start the docker service
 service docker start
+
+# no password for sudo
+echo "$SUDO_USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$SUDO_USER
+
+# create / add to groups
+groupadd docker
+usermod -aG sudo $SUDO_USER
+usermod -aG admin $SUDO_USER
+usermod -aG docker $SUDO_USER
+gpasswd -a $SUDO_USER sudo
+
+# change shell to zsh
+chsh -s /usr/bin/zsh $SUDO_USER
+touch /home/$SUDO_USER/.zshrc
+
+# change ownership of home directory
+chown -R $SUDO_USER:$SUDO_USER /home/$SUDO_USER
