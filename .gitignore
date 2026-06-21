@@ -6,6 +6,7 @@
 .gitops
 *.tar
 *.vhdx
+/bartr/*
 
 # User-specific files
 *.rsuser
