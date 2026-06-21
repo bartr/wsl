@@ -68,6 +68,9 @@ git clone --depth 1 https://github.com/bartr/wsl
     echo 'eval "$(fnm env --use-on-cd --shell zsh)"'
     echo ""
     echo "compinit"
+
+    echo ""
+    echo '[[ "$PWD" == /mnt/* ]] && cd $HOME'
 } >> $HOME/.zshrc
 
 mkdir -p "$HOME/.oh-my-zsh/completions"
