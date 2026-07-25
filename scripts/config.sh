@@ -81,6 +81,9 @@ gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
 #flux completion zsh > "$HOME/.oh-my-zsh/completions/_flux"
 #helm completion zsh > "$HOME/.oh-my-zsh/completions/_helm"
 
+# install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 # install fnm and Node LTS
 curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
 export PATH="$HOME/.local/share/fnm:$PATH"
