@@ -52,7 +52,7 @@ cd $HOME
 git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 
-git clone --depth 1 https://github.com/bartr/wsl
+# git clone --depth 1 https://github.com/bartr/wsl
 
 # add to .zshrc
 {
