@@ -6,7 +6,7 @@ if [ "$USER" == "root" ]; then
 fi
 
 
-export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.dotnet/tools:$HOME/go/bin:$HOME/.local/share/fnm
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.local/share/fnm
 
 # make some directories we will need
 mkdir -p $HOME/.ssh
@@ -16,13 +16,10 @@ mkdir -p $HOME/go/bin
 mkdir -p $HOME/bin
 mkdir -p $HOME/.local/bin
 
-
-echo "https://bartr:$GITHUB_TOKEN@github.com" > /home/bartr/.git-credentials
-
 {
   echo ""
-  echo "export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.local/share/fnm:/usr/local/go/bin"
-  echo "export GOPATH=/home/bartr/go"
+  echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:\$HOME/go/bin:\$HOME/.local/share/fnm:/usr/local/go/bin"
+  echo "export GOPATH=\$HOME/go"
   echo ""
   echo "export GITHUB_TOKEN=$GITHUB_TOKEN"
   echo ""
@@ -50,7 +47,7 @@ echo "https://bartr:$GITHUB_TOKEN@github.com" > /home/bartr/.git-credentials
 
 } >> /home/bartr/.zshenv
 
-echo "https://bartr:$GITHUB_TOKEN@github.com" > $HOME/.git-credentials
+echo "https://$USER:$GITHUB_TOKEN@github.com" > $HOME/.git-credentials
 
 git config --global credential.helper store
 git config --global core.whitespace blank-at-eol,blank-at-eof,space-before-tab
@@ -65,8 +62,6 @@ git config --global core.editor "nano -w"
 cd $HOME
 git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
-
-# git clone --depth 1 https://github.com/bartr/wsl
 
 # add to .zshrc
 {
@@ -88,10 +83,10 @@ cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 } >> $HOME/.zshrc
 
 mkdir -p "$HOME/.oh-my-zsh/completions"
+gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
 #kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 #k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
 #kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
-gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
 #flux completion zsh > "$HOME/.oh-my-zsh/completions/_flux"
 #helm completion zsh > "$HOME/.oh-my-zsh/completions/_helm"
 
@@ -100,12 +95,11 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # install fnm and Node LTS
 curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
-export PATH="$HOME/.local/share/fnm:$PATH"
 eval "$(fnm env)"
 fnm install --lts
 eval "$(fnm env)"
-npm install -g @anthropic-ai/claude-code
 
+npm install -g @anthropic-ai/claude-code
 curl -fsSL https://dev.meta.ai/install.sh | bash
 curl -fsSL https://gh.io/copilot-install | sudo bash
 

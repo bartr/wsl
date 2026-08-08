@@ -76,9 +76,6 @@ ln -sf /usr/local/go/bin/gofmt /usr/local/bin/gofmt
 #curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 #cd $OLD_PWD
 
-# start the docker service
-service docker start
-
 # no password for sudo
 echo "$SUDO_USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$SUDO_USER
 
@@ -95,3 +92,23 @@ touch /home/$SUDO_USER/.zshrc
 
 # change ownership of home directory
 chown -R $SUDO_USER:$SUDO_USER /home/$SUDO_USER
+
+# configure dockerd
+cat > /etc/docker/daemon.json >/dev/null <<'EOF'
+{
+  "default-address-pools": [
+    { "base": "10.240.0.0/14", "size": 24 }
+  ],
+  "default-ulimits": {
+    "nofile": { "Name": "nofile", "Soft": 65536, "Hard": 1048576 }
+  }
+}
+EOF
+
+# configure inotify
+echo 'fs.inotify.max_user_instances = 1024' > /etc/sysctl.d/99-deep-swe.conf
+sysctl --system
+dockerd --validate --config-file=/etc/docker/daemon.json
+
+# [re]start docker
+service docker restart
