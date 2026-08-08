@@ -33,7 +33,7 @@ echo "https://bartr:$GITHUB_TOKEN@github.com" > /home/bartr/.git-credentials
   echo ""
 
   echo "export REPO=$HOME/deep-swe"
-  echo "export PYTHONPATH=$REPO/copilot-agent"
+  echo "export PYTHONPATH=\$REPO/copilot-agent"
   echo ""
 
   # echo "alias k='kubectl'"
