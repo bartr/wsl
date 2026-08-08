@@ -104,3 +104,12 @@ curl -fsSL https://dev.meta.ai/install.sh | bash
 curl -fsSL https://gh.io/copilot-install | sudo bash
 
 uv tool install datacurve-pier
+
+### DeepSWE test ###
+cd ~
+git clone https://github.com/bartr/deep-swe
+cd ~/deep-swe
+git checkout bartr
+git pull
+
+docker build --pull -t public.ecr.aws/x8v8d7g8/mars-base:latest mars-base-override
