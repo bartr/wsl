@@ -16,25 +16,39 @@ mkdir -p $HOME/go/bin
 mkdir -p $HOME/bin
 mkdir -p $HOME/.local/bin
 
+
+echo "https://bartr:$GITHUB_TOKEN@github.com" > /home/bartr/.git-credentials
+
 {
-    echo 'export GITHUB_TOKEN=$GIBHUB_TOKEN'
-    echo ""
+  echo ""
+  echo "export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.local/share/fnm:/usr/local/go/bin"
+  echo "export GOPATH=/home/bartr/go"
+  echo ""
+  echo "export GITHUB_TOKEN=$GITHUB_TOKEN"
+  echo ""
 
-    echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:\$HOME/.dotnet/tools:\$HOME/go/bin:\$HOME/.local/share/fnm"
-    echo ""
+  echo "export COPILOT_GITHUB_TOKEN=$COPILOT_GITHUB_TOKEN"
+  echo "export MODEL_API_KEY=$MODEL_API_KEY"
+  echo "export CLAUDE_CODE_OAUTH_TOKEN=$CLAUDE_CODE_OAUTH_TOKEN"
+  echo ""
 
-    # echo "alias k='kubectl'"
-    # echo "alias kaf='kubectl apply -f'"
-    # echo "alias kdelf='kubectl delete -f'"
-    # echo "alias kl='kubectl logs'"
-    # echo "alias kak='kubectl apply -k'"
-    # echo "alias kuse='kubectl config use-context'"
-    # echo "alias kgp='kubectl get pods -A'"
-    # echo "alias kgs='kubectl get svc -A'"
-    # echo "alias kgi='kubectl get ingress -A'"
-    # echo "alias kgc='kubectl config get-contexts'"
-    echo "alias ipconfig='ip -4 a show eth0 | grep inet | sed \"s/inet//g\" | sed \"s/ //g\" | cut -d / -f 1'"
-} > $HOME/.zshenv
+  echo "export REPO=$HOME/deep-swe"
+  echo "export PYTHONPATH=$REPO/copilot-agent"
+  echo ""
+
+  # echo "alias k='kubectl'"
+  # echo "alias kaf='kubectl apply -f'"
+  # echo "alias kdelf='kubectl delete -f'"
+  # echo "alias kl='kubectl logs'"
+  # echo "alias kak='kubectl apply -k'"
+  # echo "alias kuse='kubectl config use-context'"
+  # echo "alias kgp='kubectl get pods -A'"
+  # echo "alias kgs='kubectl get svc -A'"
+  # echo "alias kgi='kubectl get ingress -A'"
+  # echo "alias kgc='kubectl config get-contexts'"
+  echo "alias ipconfig='ip -4 a show eth0 | grep inet | sed \"s/inet//g\" | sed \"s/ //g\" | cut -d / -f 1'"
+
+} >> /home/bartr/.zshenv
 
 echo "https://bartr:$GITHUB_TOKEN@github.com" > $HOME/.git-credentials
 
@@ -91,3 +105,8 @@ eval "$(fnm env)"
 fnm install --lts
 eval "$(fnm env)"
 npm install -g @anthropic-ai/claude-code
+
+curl -fsSL https://dev.meta.ai/install.sh | bash
+curl -fsSL https://gh.io/copilot-install | sudo bash
+
+uv tool install datacurve-pier
