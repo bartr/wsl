@@ -9,19 +9,14 @@ fi
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.local/share/fnm
 
 # make some directories we will need
-mkdir -p $HOME/.ssh
-chmod 700 $HOME/.ssh
-mkdir -p $HOME/go/src
-mkdir -p $HOME/go/bin
-mkdir -p $HOME/bin
-mkdir -p $HOME/.local/bin
+#mkdir -p $HOME/.ssh
+#chmod 700 $HOME/.ssh
+#mkdir -p $HOME/go/src
+#mkdir -p $HOME/go/bin
+#mkdir -p $HOME/bin
+#mkdir -p $HOME/.local/bin
 
 {
-  echo ""
-  echo "autoload -U compinit && compinit"
-  echo "zstyle ':completion:*' menu select"
-  echo "zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'" # Case-insensitive completion"
-
   echo ""
   echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:\$HOME/go/bin:\$HOME/.local/share/fnm:/usr/local/go/bin"
   echo "export GOPATH=\$HOME/go"
@@ -48,7 +43,7 @@ mkdir -p $HOME/.local/bin
   # echo "alias kgc='kubectl config get-contexts'"
   echo "alias ipconfig='ip -4 a show eth0 | grep inet | sed \"s/inet//g\" | sed \"s/ //g\" | cut -d / -f 1'"
 
-} >> /home/bartr/.zshenv
+} >> /tmp/zshenv # /home/bartr/.zshenv
 
 echo "https://$USER:$GITHUB_TOKEN@github.com" > $HOME/.git-credentials
 
@@ -91,7 +86,7 @@ git config --global core.editor "nano -w"
 
     echo ""
     echo '[[ "$PWD" == /mnt/* ]] && cd $HOME'
-} >> $HOME/.zshrc
+} >> /tmp/zshrc # $HOME/.zshrc
 
 #mkdir -p "$HOME/.oh-my-zsh/completions"
 #gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
@@ -106,9 +101,12 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # install fnm and Node LTS
 curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
-eval "$(fnm env)"
+
+# Activate fnm in the current subshell execution context
+eval "$(fnm env --use-on-cd)"
+
 fnm install --lts
-eval "$(fnm env)"
+fnm use lts-latest
 
 npm install -g @anthropic-ai/claude-code
 curl -fsSL https://dev.meta.ai/install.sh | bash

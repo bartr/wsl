@@ -8,6 +8,8 @@ if [ "$USER" != "root" ] || [ "$SUDO_USER" == "" ]; then
     exit 1
 fi
 
+export DEBIAN_FRONTEND=noninteractive
+
 update-alternatives --set iptables /usr/sbin/iptables-legacy
 
 apt-get update
@@ -17,7 +19,7 @@ apt-get install -y libssl-dev libffi-dev build-essential cifs-utils gnupg
 apt-get install -y curl git nano zsh
 apt-get install -y jq zip unzip httpie dnsutils
 
-apt-get upgrade -y
+#apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
 # add Docker repo
 install -m 0755 -d /etc/apt/keyrings
@@ -82,9 +84,7 @@ echo "$SUDO_USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$SUDO_USER
 # create / add to groups
 groupadd docker
 usermod -aG sudo $SUDO_USER
-usermod -aG admin $SUDO_USER
 usermod -aG docker $SUDO_USER
-gpasswd -a $SUDO_USER sudo
 
 # change shell to zsh
 chsh -s /usr/bin/zsh $SUDO_USER
