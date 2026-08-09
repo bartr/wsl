@@ -18,12 +18,15 @@ mkdir -p $HOME/.local/bin
 
 {
   echo ""
+  echo "autoload -U compinit && compinit"
+  echo "zstyle ':completion:*' menu select"
+  echo "zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'" # Case-insensitive completion"
+
+  echo ""
   echo "export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:\$HOME/go/bin:\$HOME/.local/share/fnm:/usr/local/go/bin"
   echo "export GOPATH=\$HOME/go"
   echo ""
   echo "export GITHUB_TOKEN=$GITHUB_TOKEN"
-  echo ""
-
   echo "export COPILOT_GITHUB_TOKEN=$COPILOT_GITHUB_TOKEN"
   echo "export MODEL_API_KEY=$MODEL_API_KEY"
   echo "export CLAUDE_CODE_OAUTH_TOKEN=$CLAUDE_CODE_OAUTH_TOKEN"
@@ -59,31 +62,39 @@ git config --global devcontainers-theme.show-dirty 1
 git config --global core.editor "nano -w"
 
 # install oh my zsh
-cd $HOME
-git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
-cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
+#cd $HOME
+#git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
+#cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 
 # add to .zshrc
 {
     echo ""
-    echo 'PROMPT="%{$fg[blue]%}%~%{$reset_color%}"'
-    echo "PROMPT+=' \$(git_prompt_info)'"
-    echo 'ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}(%{$fg[red]%}"'
-    echo 'ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "'
-    echo 'ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[red]%}%1{✗%}"'
-    echo 'ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"'
+    echo "autoload -U compinit && compinit"
+    echo "zstyle ':completion:*' menu select"
+    echo "zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'" # Case-insensitive completion"
+    echo ""
+    echo 'eval "$(docker completion zsh)"'
+    echo 'eval "$(gh completion -s zsh)"'
+
+    #echo ""
+    #echo 'PROMPT="%{$fg[blue]%}%~%{$reset_color%}"'
+    #echo "PROMPT+=' \$(git_prompt_info)'"
+    #echo 'ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}(%{$fg[red]%}"'
+    #echo 'ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "'
+    #echo 'ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[red]%}%1{✗%}"'
+    #echo 'ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"'
 
     echo ""
     echo 'eval "$(fnm env --use-on-cd --shell zsh)"'
-    echo ""
-    echo "compinit"
+    #echo ""
+    #echo "compinit"
 
     echo ""
     echo '[[ "$PWD" == /mnt/* ]] && cd $HOME'
 } >> $HOME/.zshrc
 
-mkdir -p "$HOME/.oh-my-zsh/completions"
-gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
+#mkdir -p "$HOME/.oh-my-zsh/completions"
+#gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
 #kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 #k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
 #kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
