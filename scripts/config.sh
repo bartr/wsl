@@ -8,13 +8,18 @@ fi
 
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.local/share/fnm
 
+# install oh my zsh
+cd $HOME
+git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
+cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
+
 # make some directories we will need
-#mkdir -p $HOME/.ssh
-#chmod 700 $HOME/.ssh
-#mkdir -p $HOME/go/src
-#mkdir -p $HOME/go/bin
-#mkdir -p $HOME/bin
-#mkdir -p $HOME/.local/bin
+mkdir -p $HOME/.ssh
+chmod 700 $HOME/.ssh
+mkdir -p $HOME/go/src
+mkdir -p $HOME/go/bin
+mkdir -p $HOME/bin
+mkdir -p $HOME/.local/bin
 
 {
   echo ""
@@ -42,8 +47,8 @@ export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.local/share/fnm
   # echo "alias kgi='kubectl get ingress -A'"
   # echo "alias kgc='kubectl config get-contexts'"
   echo "alias ipconfig='ip -4 a show eth0 | grep inet | sed \"s/inet//g\" | sed \"s/ //g\" | cut -d / -f 1'"
-
-} >> /tmp/zshenv # /home/bartr/.zshenv
+  echo "alias code='/mnt/c/Program Files/Microsoft VS Code/bin/code'"
+} >> $HOME/.zshenv
 
 echo "https://$USER:$GITHUB_TOKEN@github.com" > $HOME/.git-credentials
 
@@ -56,40 +61,27 @@ git config --global diff.colorMoved zebra
 git config --global devcontainers-theme.show-dirty 1
 git config --global core.editor "nano -w"
 
-# install oh my zsh
-#cd $HOME
-#git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
-#cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
-
 # add to .zshrc
 {
     echo ""
-    echo "autoload -U compinit && compinit"
-    echo "zstyle ':completion:*' menu select"
-    echo "zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'" # Case-insensitive completion"
-    echo ""
-    echo 'eval "$(docker completion zsh)"'
-    echo 'eval "$(gh completion -s zsh)"'
-
-    #echo ""
-    #echo 'PROMPT="%{$fg[blue]%}%~%{$reset_color%}"'
-    #echo "PROMPT+=' \$(git_prompt_info)'"
-    #echo 'ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}(%{$fg[red]%}"'
-    #echo 'ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "'
-    #echo 'ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[red]%}%1{✗%}"'
-    #echo 'ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"'
+    echo 'PROMPT="%{$fg[blue]%}%~%{$reset_color%}"'
+    echo "PROMPT+=' \$(git_prompt_info)'"
+    echo 'ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}(%{$fg[red]%}"'
+    echo 'ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "'
+    echo 'ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[red]%}%1{✗%}"'
+    echo 'ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"'
 
     echo ""
     echo 'eval "$(fnm env --use-on-cd --shell zsh)"'
-    #echo ""
-    #echo "compinit"
+    echo ""
+    echo "compinit"
 
     echo ""
     echo '[[ "$PWD" == /mnt/* ]] && cd $HOME'
-} >> /tmp/zshrc # $HOME/.zshrc
+} >> $HOME/.zshrc
 
-#mkdir -p "$HOME/.oh-my-zsh/completions"
-#gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
+mkdir -p "$HOME/.oh-my-zsh/completions"
+gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
 #kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 #k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
 #kustomize completion zsh > "$HOME/.oh-my-zsh/completions/_kustomize"
@@ -114,10 +106,13 @@ curl -fsSL https://gh.io/copilot-install | sudo bash
 
 uv tool install datacurve-pier
 
-### DeepSWE test ###
-cd ~
-git clone https://github.com/bartr/deep-swe
-cd ~/deep-swe
+cd $HOME
+
+if [ ! -d "$HOME/deep-swe" ]; then
+    git clone https://github.com/bartr/deep-swe
+fi
+
+cd $HOME/deep-swe
 git checkout bartr
 git pull
 
