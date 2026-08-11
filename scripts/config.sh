@@ -5,12 +5,15 @@ if [ "$USER" == "root" ]; then
     exit 1
 fi
 
-
 export PATH=$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.local/share/fnm
 
 # install oh my zsh
 cd $HOME
-git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh
+
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
+fi
+
 cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 
 # make some directories we will need
@@ -20,6 +23,8 @@ mkdir -p $HOME/go/src
 mkdir -p $HOME/go/bin
 mkdir -p $HOME/bin
 mkdir -p $HOME/.local/bin
+mkdir -p $HOME/.secrets
+mkdir -p "$HOME/.oh-my-zsh/completions"
 
 {
   echo ""
@@ -80,7 +85,6 @@ git config --global core.editor "nano -w"
     echo '[[ "$PWD" == /mnt/* ]] && cd $HOME'
 } >> $HOME/.zshrc
 
-mkdir -p "$HOME/.oh-my-zsh/completions"
 gh completion -s zsh > "$HOME/.oh-my-zsh/completions/_gh"
 #kubectl completion zsh > "$HOME/.oh-my-zsh/completions/_kubectl"
 #k3d completion zsh > "$HOME/.oh-my-zsh/completions/_k3d"
